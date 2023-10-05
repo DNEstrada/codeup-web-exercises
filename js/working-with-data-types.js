@@ -102,7 +102,7 @@ console.log(`total of rental ($3/d) is $`,totalCost);
 
 let googleRate = 400;
 let amazonRate = 380;
-let facebookRate = 250;
+let facebookRate = 350;
 let googleTotal = googleRate*6;
 let amazonTotal = amazonRate*4;
 let facebookTotal = facebookRate*10;
@@ -113,7 +113,7 @@ console.log(`Total is $`, googleTotal+amazonTotal+facebookTotal);
 // Exercise 4
 let username = 'codeup';
 let password = 'notastrongpassword';
-let minimumChar = (username.length >= 4);
+let minimumChar = (password.length >=5);
     //the password must be at least 5 characters
     if(minimumChar) {
         console.log(`password meets the minimum character length`);
@@ -121,7 +121,7 @@ let minimumChar = (username.length >= 4);
         console.log(`password does not meet the minimum character length`);
     }
     //the password must not include the username
-    if(password.includes(username,0)) {
+    if(password.includes(username)) {
         console.log(`password contains username, please change`);
     } else {
         console.log(`password does not contain username`);
