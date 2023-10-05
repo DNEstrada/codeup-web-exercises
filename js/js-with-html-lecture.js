@@ -20,25 +20,37 @@
 // let nmrOfStudents = "19";
 // let nmrOfStudents = parseInt(nmrOfStudents);
 // console.log(nmrOfStudents);
+
 // String Methods
-let username = "Justino(Nova)";
-let guildName;
-let nameLength = username.length;
-console.log("nameLength => ", nameLength);
-let guildNameStart = username.indexOf("(");
-console.log("guildNameStart =>", guildNameStart);
-let guildNameEnd = nameLength - 1;
-guildName = username.substring(guildNameStart + 1, guildNameEnd);
-console.log(guildName);
-username = username.replace("(" + guildName + ")", "");
-username = username.trim();
-console.log("username => ", username);
+// let username = "Justino(Nova)";
+// let guildName;
+// let nameLength = username.length;
+// console.log("nameLength => ", nameLength);
+// let guildNameStart = username.indexOf("(");
+// console.log("guildNameStart =>", guildNameStart);
+// let guildNameEnd = nameLength - 1;
+// guildName = username.substring(guildNameStart + 1, guildNameEnd);
+// console.log(guildName);
+// username = username.replace("(" + guildName + ")", "");
+// username = username.trim();
+// console.log("username => ", username);
+//
+// let channelMessage = "username from the guildName guild has logged in.";
+// channelMessage = (username + " from the " + guildName + " guild has logged in.");
+// channelMessage = `${username} from the ${guildName} guild has logged in.`;
+// console.log(channelMessage);
+//
+// let i = 35;
+// console.log(i);
 
-let channelMessage = "username from the guildName guild has logged in.";
-channelMessage = (username + " from the " + guildName + " guild has logged in.");
-channelMessage = `${username} from the ${guildName} guild has logged in.`;
-console.log(channelMessage);
+// Rewrite previous example as a function
+const nameGuildLogin = (username) => {
+     // Finds start of ( and extracts guild name and character name
+     let guildStart = username.indexOf("(");
+     let guild = username.slice(guildStart + 1,username.length - 1);
+     let name = username.slice(0,guildStart);
+     return `${name} from ${guild} has joined the server`;
+}
 
-let i = 35;
-console.log(i);
+console.log(nameGuildLogin("Justino(Nova)"));
 
