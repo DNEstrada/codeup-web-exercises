@@ -49,7 +49,7 @@ const random = Math.floor((Math.random() * 3) + 1);
  * number)
  */
 const isTwo = (x) => {
-     if (x === 2) {
+     if (x === 2) { // Don't need if statements if return === 2
           return true;
      } else {
           return false;
@@ -80,7 +80,8 @@ console.log(`The tip to your bill is ${calculateTip(0.15, 33.42)}`);
  * prompt the user for the bill total and a percentage they would like to tip,
  * then display the dollar amount they should tip
  */
-let promptTip = calculateTip(prompt("How much do you want to tip?"), prompt("How much is your bill?"));
+let promptTip = calculateTip(parseFloat(prompt("How much do you want to tip?")),
+    parseFloat(prompt("How much is your bill?")));
 alert(`The tip to your bill is ${promptTip}`);
 /**
  * TODO:
@@ -97,9 +98,8 @@ alert(`The tip to your bill is ${promptTip}`);
  * > applyDiscount(45.99, 0.12) // 40.4712
  */
 let applyDiscount = (price, discountPrct) => {
-     let discAmount = price * discountPrct;
-     let discResult = (price - discAmount).toLocaleString("en-US", {style: "currency", currency: "USD"});
-     return discResult;
+     let discount = price - (price * discountPrct);
+     return discount;
 }
 console.log(applyDiscount(100, .2));
 console.log(applyDiscount(45.99, .12));
