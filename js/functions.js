@@ -8,8 +8,8 @@
  * Example
  * > sayHello("codeup") // returns "Hello, codeup!"
  */
-const sayHello = (name) => console.log(`Hello, ${name}!`);
-sayHello("codeup");
+const sayHello = (name) => `Hello, ${name}!`;
+console.log(sayHello("codeup"));
 /**
  * TODO:
  * Call the function 'sayHello' and pass your name as a string literal argument.
@@ -18,7 +18,7 @@ sayHello("codeup");
  * console.log 'helloMessage' to check your work
  */
 let helloMessage = sayHello("Daniel");
-helloMessage;
+console.log(helloMessage);
 /**
  * TODO:
  * Store your name as a string in a variable named 'myName', and pass that
@@ -26,7 +26,7 @@ helloMessage;
  * console.
  */
 let myName = "Daniel Estrada";
-sayHello(myName);
+console.log(sayHello(myName));
 // Don't modify the following line, it generates a random number between 1 and 3
 // and stores it in a variable named random
 const random = Math.floor((Math.random() * 3) + 1);
@@ -69,12 +69,11 @@ console.log(random, isTwo(random));
  */
 const calculateTip = (tipPrct, bill) => {
      let tip = (tipPrct * bill).toLocaleString("en-US", {style: "currency", currency: "USD"});
-     console.log(`The tip to your bill is ${tip}`);
      return tip;
 }
-calculateTip(0.20, 20);
-calculateTip(0.25, 25.50);
-calculateTip(0.15, 33.42);
+console.log(`The tip to your bill is ${calculateTip(0.20, 20)}`);
+console.log(`The tip to your bill is ${calculateTip(0.25, 25.50)}`);
+console.log(`The tip to your bill is ${calculateTip(0.15, 33.42)}`);
 /**
  * TODO:
  * Use prompt and alert in combination with your calculateTip function to
