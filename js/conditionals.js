@@ -169,44 +169,47 @@ alert(`Your total based on your lucky number is ${calculateTotal(luckyNumber, as
 //           let numberAsked = parseFloat(prompt("What is the number?"));
 //           if (isNaN(numberAsked)) {
 //                alert("You put an incorrect input data type");
-//           }
-//           if (numberAsked % 0) {
-//                alert("Your number is even")
 //           } else {
+//             if (numberAsked % 0) {
+//                alert("Your number is even")
+//             } else {
 //                alert("Your number is odd")
-//           }
-//           alert(`Your number plus 100 is ${numberAsked + 100}`);
-//           if (numberAsked > 0) {
+//             }
+//             alert(`Your number plus 100 is ${numberAsked + 100}`);
+//             if (numberAsked > 0) {
 //                alert("Your number is positive");
-//           }
-//           if (numberAsked === 0) {
+//             }
+//             if (numberAsked === 0) {
 //                alert("Your number is neither positive or negative");
-//           }
-//           if (numberAsked < 0) {
+//             }
+//             if (numberAsked < 0) {
 //                alert("Your number is negative");
+//             }
 //           }
 //      }
 
 let numberQuiz = () => {
-     let askNumber = confirm("Would you like to enter a number?");
+     let askNumber = confirm("Would you like to enter a number?"); // function starts with the prompt
      if(askNumber) {
           let numberAsked = parseFloat(prompt("What is the number?"));
-          if (isNaN(numberAsked)) {
+          if (isNaN(numberAsked)) { // return early if NaN
                return alert("You put an incorrect input data type");
-          } else {
+          } else { // start rest of function if number
                if (numberAsked % 0) {
-                    alert("Your number is even")
+                    alert("Your number is even");
+               } else if ((numberAsked % 2) === 1 || -1)  { // checks if odd whether pos/neg
+                    alert("Your number is odd");
                } else {
-                    alert("Your number is odd")
+                    alert("Your number is neither even or odd");
                }
-               alert(`Your number plus 100 is ${numberAsked + 100}`);
-               if (numberAsked > 0) {
+
+               alert(`Your number plus 100 is ${numberAsked + 100}`); // runs calc separately
+
+               if (numberAsked > 0) { // goes through pos/neg
                     alert("Your number is positive");
-               }
-               if (numberAsked === 0) {
+               } else if (numberAsked === 0) {
                     alert("Your number is neither positive or negative");
-               }
-               if (numberAsked < 0) {
+               } else if (numberAsked < 0) {
                     alert("Your number is negative");
                }
           }
