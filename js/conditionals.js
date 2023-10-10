@@ -147,6 +147,8 @@ let calculateTotal = (luckyNumber, totalAmount) => {
 // Generate a random number between 0 and 6
 const luckyNumber = Math.floor(Math.random() * 6);
 const askBill = prompt("What is your total bill?")
+alert(`Your lucky number is ${luckyNumber}`);
+alert(`Your price before the discount is ${askBill}`);
 alert(`Your total based on your lucky number is ${calculateTotal(luckyNumber, askBill)}`);
 
 /**
@@ -198,7 +200,7 @@ let numberQuiz = () => {
           if (isNaN(numberAsked)) { // return early if NaN
                return alert("You put an incorrect input data type");
           } else { // start rest of function if number
-               if (numberAsked % 0) {
+               if ((numberAsked % 2) === 0) {
                     alert("Your number is even");
                } else if ((numberAsked % 2) === 1 || -1)  { // checks if odd whether pos/neg
                     alert("Your number is odd");
