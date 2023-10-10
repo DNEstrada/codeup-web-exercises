@@ -21,29 +21,29 @@
  * Test your function by passing various string literals to it and
  * console.logging the function's return value
  */
-let analyzeColor = (colorName) => {
-     if (colorName.toLowerCase() === "blue") {
-          return "blue is the color of the sky";
-     }
-     if (colorName.toLowerCase() === "red") {
-          return "Strawberries are red";
-     }
-     if (colorName.toLowerCase() === "orange") {
-          return "Oranges are good for you";
-     }
-     if (colorName.toLowerCase() === "green") {
-          return "Grass is green";
-     }
-     if (colorName.toLowerCase() === "indigo") {
-          return "Indigo is almost blue";
-     }
-     if (colorName.toLowerCase() === "violet") {
-          return "Violet is almost purple";
-     } else {
-          return `I don't know anything about ${colorName}`;
-     }
-}
-console.log(analyzeColor("banana"));
+//let analyzeColor = (colorName) => {
+//      if (colorName.toLowerCase() === "blue") {
+//           return "blue is the color of the sky";
+//      }
+//      if (colorName.toLowerCase() === "red") {
+//           return "Strawberries are red";
+//      }
+//      if (colorName.toLowerCase() === "orange") {
+//           return "Oranges are good for you";
+//      }
+//      if (colorName.toLowerCase() === "green") {
+//           return "Grass is green";
+//      }
+//      if (colorName.toLowerCase() === "indigo") {
+//           return "Indigo is almost blue";
+//      }
+//      if (colorName.toLowerCase() === "violet") {
+//           return "Violet is almost purple";
+//      } else {
+//           return `I don't know anything about ${colorName}`;
+//      }
+// }
+//console.log(analyzeColor("banana"));
 // Don't change the next two lines!
 // These lines create two variables for you:
 // - `colors`: a list of the colors of the rainbow
@@ -62,27 +62,31 @@ const randomColor = colors[Math.floor(Math.random() * colors.length)];
  * Comment out the code above, and refactor your function to use a switch-case statement
  */
 const colorName = randomColor
-switch (colorName.toLowerCase()) {
-     case "blue":
-          console.log("blue is the color of the sky");
-          break;
-     case "red":
-          console.log("Strawberries are red");
-          break;
-     case "yellow":
-          console.log("Sunflowers are yellow");
-          break;
-     case "green":
-          console.log("Grass is green");
-          break;
-     case "indigo":
-          console.log("Indigo is almost blue");
-          break;
-     case "violet":
-          console.log("Violet is almost purple");
-          break;
-     default:
-          console.log(`I don't know anything about ${colorName}`);
+const askColor = prompt("What is the color?");
+let analyzeColor = (string) => {
+     let lowerColor = string.toLowerCase();
+     switch (lowerColor) {
+          case "blue":
+               return "blue is the color of the sky";
+               break;
+          case "red":
+               return "Strawberries are red";
+               break;
+          case "yellow":
+               return "Sunflowers are yellow";
+               break;
+          case "green":
+               return "Grass is green";
+               break;
+          case "indigo":
+               return "Indigo is almost blue";
+               break;
+          case "violet":
+               return "Violet is almost purple";
+               break;
+          default:
+               return `I don't know anything about ${string}`;
+     }
 }
 /**
  * TODO:
@@ -90,7 +94,6 @@ switch (colorName.toLowerCase()) {
  * user to your `analyzeColor` function. Alert the return value from your
  * function to show it to the user.
  */
-const askColor = prompt("What is the color?");
 alert(analyzeColor(askColor));
 /* ########################################################################## */
 
