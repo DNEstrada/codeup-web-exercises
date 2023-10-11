@@ -36,7 +36,8 @@ do {
           console.log(`Cannot sell you ${conesBought} if I only have ${allCones}...`);
           allCones = 0;
      } else {
-     console.log(`${conesBought} cones sold...`);
-     allCones -= conesBought; }
+          console.log(`${conesBought} cones sold...`);
+          allCones -= conesBought;
+     }
 } while (allCones>0);
 console.log (`Yay! I sold them all!`);
