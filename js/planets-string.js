@@ -28,4 +28,10 @@
      console.log(breakPlanets);
      let unorderedPlanets = "<ul><li>Mercury</li><li>Venus</li><li>Earth</li><li>Mars</li><li>Jupiter</li><li>Saturn</li><li>Uranus</li><li>Neptune</li></ul>"
      document.body.innerHTML += unorderedPlanets;
+
+     // instructor walk-through
+     // let planetsHTML = planetsArray.join("</li><li>");
+     // planetsHTML = `<ul><li>${planetsHTML}</li></ul>`;
+     // document.body.innerHTML += planetsHTML
+     // can also use map() to refactor the planets syntax and push/unshift <ul> to add the tags
 })();

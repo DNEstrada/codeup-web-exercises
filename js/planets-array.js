@@ -27,7 +27,7 @@
      console.log(planets);
 
      console.log('Removing "The Sun" from the beginning of the planets array.');
-     planets.shift("The Sun");
+     planets.shift("The Sun"); // doesn't need argument
      console.log(planets);
 
      console.log('Removing "Pluto" from the end of the planets array.');
@@ -36,6 +36,7 @@
 
      console.log('Finding and logging the index of "Earth" in the planets array.');
      console.log(planets.indexOf("Earth"));
+
      console.log("Reversing the order of the planets array.");
      planets.reverse();
      console.log(planets);
