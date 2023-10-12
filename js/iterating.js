@@ -18,7 +18,7 @@ console.log(names.length);
       * Create log statements that will print each of the names individually by
       * accessing each element's index.
       */
-console.log(names);
+console.log(names); // supposed to console.log each index
      /**
       * TODO:
       * Write some code that uses a for loop to log every item in the names
@@ -37,7 +37,7 @@ names.forEach((name) => {
      /**
       * TODO:
       * Create the following three functions, each will accept an array and
-      * return an an element from it
+      * return an element from it
       * - first: returns the first item in the array
       * - second: returns the second item in the array
       * - last: returns the last item in the array
@@ -49,15 +49,15 @@ names.forEach((name) => {
       */
 const first = (array) => {
      return array[0];
-     }
+};
 
 const second = (array) => {
      return array[1];
-}
+};
 
 const last = (array) => {
      return array[array.length-1];
-}
+};
 console.log(first(names));
 console.log(second(names));
 console.log(last(names));
