@@ -14,9 +14,13 @@
 const person = {
      firstName: "Daniel",
      lastName: "Estrada"
-     }
+   //sayHello:  function(){
+   //     console.log(`${this.firstName} says hello.`);
+   //}
+}
      console.log(person.firstName);
      console.log(person.lastName);
+     // can also use person["firstName"] when needing to recall it as a variable
      /**
       * TODO:
       * Add a sayHello method to the person object that returns a greeting using
@@ -75,7 +79,7 @@ person.sayHello();
       * > console.log(books[0].author.lastName) // "Adams"
       */
 const books = [
-     {
+     { // after creating createBook function, supposed to recall that function to output object
      title: "The Salmon of Doubt",
      author: {
           firstName: "Douglas",
@@ -150,7 +154,11 @@ const books = [
       *   outputs the information described above. Refactor your loop to use your
       *   `showBookInfo` function.
       */
-const createBook = (createTitle, createAuthor) => {
+const createBook = (createTitle, createAuthor) => { // takes title & author and creates object
+     //let result = {
+        //title,
+        //firstName,
+        //lastName,
      let newBook = {
                title: createTitle,
                author: createAuthor
@@ -162,7 +170,7 @@ const createBook = (createTitle, createAuthor) => {
 //      console.log(createBook(books[i].title,books[i].author));
 // });
 
-const showBookInfo = (bookObject) => {
+const showBookInfo = (bookObject) => { // takes object and shows the properties
      console.log(`Title:`, bookObject.title);
      console.log(`Author:`, bookObject.author);
 }
