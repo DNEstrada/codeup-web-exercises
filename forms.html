@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Register With Us</title>
+</head>
+<body>
+	<form method="POST" action="https://request-inspector.glitch.me/">
+		<label>
+			<input type="text" name="email" placeholder="Enter your email address" />
+			<br>
+			<input type="password" name="password" placeholder="Enter your password" />
+		</label>
+		<br>
+		<label>
+			<textarea name="bio" placeholder="Enter your bio"></textarea>
+		</label>
+		<fieldset>
+			<label>
+				<legend>How did you hear about us</legend>
+				<!-- Changed quiz from radio to checkbox
+				<input type="radio" name="howhear" value="bill" /> billboard <br />
+				<input type="radio" name="howhear" value="radio" /> radio advertisement <br />
+				<input type="radio" name="howhear" value="internet" /> internet advertisement <br />
+				<input type="radio" name="howhear" value="other" /> other <br /> -->
+				<input name="howhear" value="bill" type="checkbox" /> billboard <br>
+				<input name="howhear" value="radio" type="checkbox" /> radio advertisement <br>
+				<input name="howhear" value="internet" type="checkbox" /> internet advertisement <br>
+				<input name="howhear" value="other" type="checkbox" /> other <br>
+			</label>
+			<label></label>
+		</fieldset>
+		<fieldset>
+			<legend>What web browser are you using</legend>
+			<select name="browser">
+				<option value="chrome">Google Chrome</option>
+				<option value="firefox">Mozilla Firefox</option>
+				<option value="safari">Apple Safari</option>
+			</select>
+		</fieldset>
+		<button>Submit</button>
+	</form>
+</body>
+</html>
+<!--
+	-Changing from GET to POST will change it from submitting it through the url as single line, to object JS code in the HTTP body
+	-Leaving off name attribute will cause each input element to act individually and not pass values
+	-Same with id values
+-->
