@@ -7,26 +7,28 @@
 <body>
 	<form method="POST" action="https://request-inspector.glitch.me/">
 		<label>
-			<input type="text" name="email" placeholder="Enter your email address" />
+			<span>Email</span>
+			<input type="email" id="email" name="email" placeholder="Enter your email address" required>
 			<br>
-			<input type="password" name="password" placeholder="Enter your password" />
+			<span>Password</span>
+			<input type="password" id="password" name="password" placeholder="Enter your password" required>
 		</label>
 		<br>
 		<label>
-			<textarea name="bio" placeholder="Enter your bio"></textarea>
+			<textarea name="bio" id="bio" placeholder="Enter your bio"></textarea>
 		</label>
 		<fieldset>
-			<label>
+			<label> <!-- labels can be put on each radio/checkbox option -->
 				<legend>How did you hear about us</legend>
 				<!-- Changed quiz from radio to checkbox
 				<input type="radio" name="howhear" value="bill" /> billboard <br />
 				<input type="radio" name="howhear" value="radio" /> radio advertisement <br />
 				<input type="radio" name="howhear" value="internet" /> internet advertisement <br />
 				<input type="radio" name="howhear" value="other" /> other <br /> -->
-				<input name="howhear" value="bill" type="checkbox" /> billboard <br>
-				<input name="howhear" value="radio" type="checkbox" /> radio advertisement <br>
-				<input name="howhear" value="internet" type="checkbox" /> internet advertisement <br>
-				<input name="howhear" value="other" type="checkbox" /> other <br>
+				<input name="howhear" id="bill" value="bill" type="checkbox" /> billboard <br>
+				<input name="howhear" id="radio" value="radio" type="checkbox" /> radio advertisement <br>
+				<input name="howhear" id="internet" value="internet" type="checkbox" /> internet advertisement <br>
+				<input name="howhear" id="other" value="other" type="checkbox" /> other <br>
 			</label>
 			<label></label>
 		</fieldset>
@@ -36,6 +38,7 @@
 				<option value="chrome">Google Chrome</option>
 				<option value="firefox">Mozilla Firefox</option>
 				<option value="safari">Apple Safari</option>
+				<option value="nav">Netscape Navigator</option>
 			</select>
 		</fieldset>
 		<button>Submit</button>
@@ -45,5 +48,6 @@
 <!--
 	-Changing from GET to POST will change it from submitting it through the url as single line, to object JS code in the HTTP body
 	-Leaving off name attribute will cause each input element to act individually and not pass values
+		*Doesn't know what to pass off as the key
 	-Same with id values
 -->
