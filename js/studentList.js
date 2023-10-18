@@ -14,9 +14,10 @@ const findTopStudent = (studentList) => {
      let topStudent = studentList[0];
      // Your code here
      for(let student of studentList) {
-          if (student.grade > topStudent.grade) {
-               topStudent = student;
-          }
+          // if (student.grade > topStudent.grade) {
+          //      topStudent = student;
+          // }
+          topStudent = (student.grade > topStudent.grade) ? student : topStudent;
      }
      return topStudent;
 };
