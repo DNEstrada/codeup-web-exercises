@@ -1,4 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+body {
+    background-color: #D900FF0C;
+    background-image: url("../img/purplemountain.jpeg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    font-family: 'Open Sans', sans-serif;
+}
+
 .fancy-header {
     color: purple;
 }
 /* inline attributes are applied over stylesheets */
+header {
+    text-align: center;
+    color: blue;
+    text-decoration: underline;
+}
+
+main li {
+    list-style: square;
+}
+
+table th, tr {
+    padding: 20px;
+    font-family: "serif";
+}
+
+a:link {
+    color: aqua;
+}
+
+a:hover {
+    color: brown;
+}
+
+a:visited {
+    color: yellow;
+}
+
+a:active {
+    color: black;
+}
