@@ -41,7 +41,7 @@ body {
 	border: 10px solid var(--clr-primary);
 	border-radius: 10px;
 }
-/* 
+/*
 .item:before {
   content: "min-width: 150px;";
   position: absolute;
@@ -59,4 +59,4 @@ body {
   font-size: 0.6rem;
   font-weight: 400;
   color: var(--clr-light);
-} */
+}
