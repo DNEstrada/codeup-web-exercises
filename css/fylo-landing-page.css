@@ -17,8 +17,8 @@ column {
     flex: 1 0 0;
 }
 h1 {
-    font-size: 40px;
-    line-height: 60px;
+    font-size: 25px;
+    line-height: 30px;
 }
 p {
     font-family: "Open Sans";
@@ -59,4 +59,14 @@ input {
 }
 input::placeholder {
     color: #c2c2c2;
+}
+#second-hero {
+    background-color: #F8F8FD;
+}
+#hero-img {
+    min-height: 60dvh;
+}
+.second-paragraph {
+    line-height: 14px;
+    font-size: 13px;
 }
