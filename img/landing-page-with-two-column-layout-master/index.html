@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- displays site properly based on user's device -->
+
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+
+    <title>Landing page with two column layout</title>
+    <link rel="stylesheet" href="css/resets.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <header class="container py-20 my-20">
+            <div class="row full-width justify-content-between">
+                <div class="column flex-shrink">
+                    <a class="d-flex" href="/">
+                        <img src="images/logo.svg" class="logo">
+                    </a>
+                </div>
+                <nav class="column flex-shrink justify-content-center">
+                    <ul class="d-flex gap-30">
+                        <li>
+                            <a href="#">Features</a>
+                        </li>
+                        <li>
+                            <a href="#">Team</a>
+                        </li>
+                        <li>
+                            <a href="#">Sign In</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <section class="container justify-content-center hero">
+            <div class="row">
+                <div class="column gap-25 justify-content-center">
+                    <h1>All your files in one secure location, accessible anywhere.</h1>
+                    <p>Fylo stores your most important files in one secure location. Access them wherever you need,
+                        share and collaborate with
+                        friends, family, and co-workers.</p>
+                    <form class="d-flex gap-15" style="max-width: 536px;">
+                        <label class="flex-grow">
+                            <input type="email" id="email" name="email" placeholder="Enter email..." required>
+                        </label>
+                        <button class="single-submit">Get Started</button>
+                    </form>
+                </div>
+                <div class="column hero-img-column">
+                    <img src="images/illustration-1.svg" class="hero-img" alt="Hero illustration">
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>
