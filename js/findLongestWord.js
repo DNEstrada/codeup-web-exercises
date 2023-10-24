@@ -1,4 +1,7 @@
 const findLongestWord = (sentence) => {
+     if (typeof sentence !== "string") {
+          return "put a sentence";
+     }
      // Your code here
      const stringToArr = sentence.split(" ");
      let longestWord = "";
