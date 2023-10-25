@@ -19,9 +19,13 @@ footer {
     background-color: #CCFFFF;
 }
 
-a:any-link {
+a {
     text-decoration: none;
-    text-decoration-color: black;
+    text-decoration-color: blue;
+}
+
+a:visited {
+    text-decoration-color: blue;
 }
 
 h1 {
@@ -31,7 +35,7 @@ h1 {
 }
 
 h2 {
-    padding: 15px 0px;
+    margin-bottom: 30px;
 }
 
 ul {
@@ -47,6 +51,10 @@ ul {
     font-style: italic;
 }
 
+button img {
+    max-height: 30px;
+}
+
 @media screen and (max-width: 720px) {
     .container .row {
         flex-direction: column;
@@ -57,6 +65,10 @@ ul {
         padding: 10px;
         font-size: 48px;
         margin-bottom: 20px;
+    }
+
+    h2 {
+        margin-bottom: 15px;
     }
 
     ul {
@@ -74,5 +86,13 @@ ul {
 
     .alert-info {
         display: revert;
+    }
+
+    .main p {
+        margin-bottom: 50px;
+    }
+
+    #footer {
+        flex-direction: row;
     }
 }
