@@ -12,7 +12,7 @@ img {
     min-height: 100dvh;
 }
 
-@media screen and (max-width:720px) {
+@media screen and (max-width:576px) {
     .col>a {
         display: block;
     }
