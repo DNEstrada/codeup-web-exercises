@@ -4,12 +4,14 @@ h1 {
     max-height: 40px;
     letter-spacing: 3px;
     font-weight: 600;
+    text-transform: uppercase;
 }
 
 h3 {
    color: #4F82FB;
     font-weight: bold;
     margin-top: 40px;
+    text-transform: uppercase;
 }
 
 nav {
