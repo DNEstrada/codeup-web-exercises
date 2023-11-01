@@ -10,6 +10,13 @@ nav {
     border-bottom: 5px solid #95AB76;
 }
 
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 80dvh;
+}
+
+
 .header-name {
     min-height: 100px;
 }
