@@ -2,8 +2,12 @@
 
 h1 {
     max-height: 40px;
-    font-size: 30px;
+    font-size: 35px;
     letter-spacing: 3px;
+}
+
+nav {
+    border-bottom: 5px solid #95AB76;
 }
 
 .header-name {
