@@ -2,20 +2,26 @@
 
 h1 {
     max-height: 40px;
-    font-size: 35px;
     letter-spacing: 3px;
+    font-weight: 600;
+}
+
+h3 {
+   color: #4F82FB;
+    font-weight: bold;
+    margin-top: 40px;
 }
 
 nav {
     border-bottom: 5px solid #95AB76;
+    padding: 20px 0px;
 }
 
 .page-wrapper {
     display: flex;
     flex-direction: column;
-    max-width: 80dvh;
+    min-width: 80%;
 }
-
 
 .header-name {
     min-height: 100px;
