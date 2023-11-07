@@ -42,16 +42,20 @@
     // TODO: Set text color on every other list item to grey
     listItems.forEach((item, i) => {
         if ((i%2)===0) {
+            // * instructor: listItem.style.color = "grey";
+            // * can also put in css :nth-child(even)
             listItems[i].style.color = "grey";
         }
     });
     // TODO: Set text color of li with dbid = 1 to blue
+    // * document.querySelector('li[data-dbid="1"]').style.color = "blue";
     const blueLi = document.querySelector('li[data-dbid="1"]');
     blueLi.style.color = "#00F";
     // TODO: Uncomment the next line and get all elements with class name sub-paragraph
     const subParagraphs = document.querySelectorAll('.sub-paragraph');
 
     // TODO: Change the text in the first sub paragraph to "Mission Accomplished!"
+    // * subParagraphs[0].innerText = "Mission Accomplished!";
     subParagraphs[0].innerHTML = "Mission Accomplished!";
 </script>
 </body>
