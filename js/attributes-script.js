@@ -8,12 +8,14 @@ const cardTimers = () => {
          "lightsteelblue",
          "lightslategrey"
      ]
+     // * instructor walkthrough: variables can be outside of timer functions
      setTimeout(() => {
           let newProfilePic = document.querySelector('#profile-pic');
           newProfilePic.setAttribute('src', './img/codeup-logo-svg.svg');
      },2000);
      setTimeout(() => {
           let newProfileName = document.querySelector('#profile-name');
+          // * can also use innerText here
           newProfileName.innerHTML = "CodeUp Logo";
      },4000);
      setTimeout(() => {
@@ -28,6 +30,8 @@ const cardTimers = () => {
           //      profileCardSwitch.classList.add('card-lime');
           // }
           let randomColor = rainbowBG[(Math.floor(Math.random() * rainbowBG.length))];
+          // * can also change it with profileCardSwitch.style.backgroundColor
+          // * to keep pure put colorsArr in function argument and reference it each occurance of array
           profileCardSwitch.setAttribute("style", `background-color:${randomColor}`);
      },2000);
      setTimeout(() => {
