@@ -84,10 +84,12 @@
         e.target.style.backgroundColor = `rgb(${rColor},${gColor},${bColor})`;
     });
 
+    // * should be querySelectorAll since its for all paragraphs, and all paragraphs should have font size changed
     document.querySelector('p').addEventListener('dblclick', e=> {
         e.target.style.fontSize = "18px";
     });
 
+    // * can do one loop with each eventListener inside
     document.querySelector('ul').addEventListener('mouseenter', e=> {
         listItems.forEach((listItem) => {
             listItem.style.color = "#F00";
@@ -95,7 +97,7 @@
     });
     document.querySelector('ul').addEventListener('mouseleave', e=> {
         listItems.forEach((listItem) => {
-            listItem.style.color = "#000";
+            listItem.style.color = "#000"; // * can also be "" to unset back to default
         });
     });
 </script>
