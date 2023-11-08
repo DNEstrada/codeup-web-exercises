@@ -54,7 +54,7 @@
     // TODO: Set text color of li with dbid = 1 to blue
     // * document.querySelector('li[data-dbid="1"]').style.color = "blue";
     const blueLi = document.querySelector('li[data-dbid="1"]');
-    blueLi.style.color = "#00F";
+    // blueLi.style.color = "#00F";
     // TODO: Uncomment the next line and get all elements with class name sub-paragraph
     const subParagraphs = document.querySelectorAll('.sub-paragraph');
 
@@ -63,20 +63,40 @@
     // subParagraphs[0].innerHTML = "Mission Accomplished!";
 
     // * can also can query node.addEventListener for each button
-    document.body.addEventListener('click', e=> {
-        if (e.target === document.querySelector('#click-button1')) {
-            mainHeader.innerHTML = "JavaScript is Cool";
-        } else if (e.target === document.querySelector('#click-button2')) {
-            subHeader.style.color = "#00F";
-        } else if (e.target === document.querySelector('#click-button3')) {
-            listItems.forEach((item, i) => {
-                if ((i%2)===0) {
-                   listItems[i].style.color = "grey";
-                }
-            });
-        } else if (e.target === document.querySelector('#click-button4')) {
-            subParagraphs[0].innerHTML = "Mission Accomplished!";
-        }
+    // document.body.addEventListener('click', e=> {
+    //     if (e.target === document.querySelector('#click-button1')) {
+    //         mainHeader.innerHTML = "JavaScript is Cool";
+    //     } else if (e.target === document.querySelector('#click-button2')) {
+    //         subHeader.style.color = "#00F";
+    //     } else if (e.target === document.querySelector('#click-button3')) {
+    //         listItems.forEach((item, i) => {
+    //             if ((i%2)===0) {
+    //                listItems[i].style.color = "grey";
+    //             }
+    //         });
+    //     } else if (e.target === document.querySelector('#click-button4')) {
+    //         subParagraphs[0].innerHTML = "Mission Accomplished!";
+    //     }
+    document.querySelector('h1').addEventListener('click', e=> {
+        const rColor = Math.floor(Math.random() * 255);
+        const gColor = Math.floor(Math.random() * 255);
+        const bColor = Math.floor(Math.random() * 255);
+        e.target.style.backgroundColor = `rgb(${rColor},${gColor},${bColor})`;
+    });
+
+    document.querySelector('p').addEventListener('dblclick', e=> {
+        e.target.style.fontSize = "18px";
+    });
+
+    document.querySelector('ul').addEventListener('mouseenter', e=> {
+        listItems.forEach((listItem) => {
+            listItem.style.color = "#F00";
+        });
+    });
+    document.querySelector('ul').addEventListener('mouseleave', e=> {
+        listItems.forEach((listItem) => {
+            listItem.style.color = "#000";
+        });
     });
 </script>
 </body>
