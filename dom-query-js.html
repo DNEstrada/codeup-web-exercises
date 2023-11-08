@@ -62,22 +62,19 @@
     // * subParagraphs[0].innerText = "Mission Accomplished!";
     // subParagraphs[0].innerHTML = "Mission Accomplished!";
 
-    const button1 = document.querySelector('#click-button1');
-    const button2 = document.querySelector('#click-button2');
-    const button3 = document.querySelector('#click-button3');
-    const button4 = document.querySelector('#click-button4');
+    // * can also can query node.addEventListener for each button
     document.body.addEventListener('click', e=> {
-        if (e.target === button1) {
+        if (e.target === document.querySelector('#click-button1')) {
             mainHeader.innerHTML = "JavaScript is Cool";
-        } else if (e.target === button2) {
+        } else if (e.target === document.querySelector('#click-button2')) {
             subHeader.style.color = "#00F";
-        } else if (e.target === button3) {
+        } else if (e.target === document.querySelector('#click-button3')) {
             listItems.forEach((item, i) => {
                 if ((i%2)===0) {
                    listItems[i].style.color = "grey";
                 }
             });
-        } else if (e.target === button4) {
+        } else if (e.target === document.querySelector('#click-button4')) {
             subParagraphs[0].innerHTML = "Mission Accomplished!";
         }
     });
