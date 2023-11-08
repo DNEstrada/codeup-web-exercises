@@ -24,29 +24,33 @@
     pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
     culpa qui officia deserunt mollit anim id est laborum.
 </p>
+<button id="click-button1">set innerHTML</button>
+<button id="click-button2">set subHeader to blue</button>
+<button id="click-button3">change odd list items to grey</button>
+<button id="click-button4">Mission Accomplished</button>
 <script>
     "use strict";
     // TODO: Uncomment next line and get the main header element by id
     const mainHeader = document.querySelector('#main-header');
 
     // TODO: Set inner html of mainHeader to "JavaScript is Cool"
-    mainHeader.innerHTML = "JavaScript is Cool";
+    // mainHeader.innerHTML = "JavaScript is Cool";
     // TODO: Uncomment the next line and get the sub header element by id
     const subHeader = document.querySelector('#sub-header');
 
     // TODO: Set the text color of subHeader to blue
-    subHeader.style.color = "#00F";
+    // subHeader.style.color = "#00F";
     // TODO: Uncomment the next line and get all list items
     const listItems = document.querySelectorAll('li');
 
     // TODO: Set text color on every other list item to grey
-    listItems.forEach((item, i) => {
-        if ((i%2)===0) {
-            // * instructor: listItem.style.color = "grey";
-            // * can also put in css :nth-child(even)
-            listItems[i].style.color = "grey";
-        }
-    });
+    // listItems.forEach((item, i) => {
+    //     if ((i%2)===0) {
+    //         // * instructor: listItem.style.color = "grey";
+    //         // * can also put in css :nth-child(even)
+    //         listItems[i].style.color = "grey";
+    //     }
+    // });
     // TODO: Set text color of li with dbid = 1 to blue
     // * document.querySelector('li[data-dbid="1"]').style.color = "blue";
     const blueLi = document.querySelector('li[data-dbid="1"]');
@@ -56,7 +60,27 @@
 
     // TODO: Change the text in the first sub paragraph to "Mission Accomplished!"
     // * subParagraphs[0].innerText = "Mission Accomplished!";
-    subParagraphs[0].innerHTML = "Mission Accomplished!";
+    // subParagraphs[0].innerHTML = "Mission Accomplished!";
+
+    const button1 = document.querySelector('#click-button1');
+    const button2 = document.querySelector('#click-button2');
+    const button3 = document.querySelector('#click-button3');
+    const button4 = document.querySelector('#click-button4');
+    document.body.addEventListener('click', e=> {
+        if (e.target === button1) {
+            mainHeader.innerHTML = "JavaScript is Cool";
+        } else if (e.target === button2) {
+            subHeader.style.color = "#00F";
+        } else if (e.target === button3) {
+            listItems.forEach((item, i) => {
+                if ((i%2)===0) {
+                   listItems[i].style.color = "grey";
+                }
+            });
+        } else if (e.target === button4) {
+            subParagraphs[0].innerHTML = "Mission Accomplished!";
+        }
+    });
 </script>
 </body>
 </html>
