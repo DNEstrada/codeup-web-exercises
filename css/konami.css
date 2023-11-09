@@ -1,0 +1,8 @@
+main .column {
+    width: 100%;
+}
+
+.hero-img {
+    aspect-ratio: 480/360;
+    object-fit: cover;
+}

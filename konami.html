@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Konami Code</title>
+	<link rel="stylesheet" href="./css/resets.css">
+	<link rel="stylesheet" href="./css/layout.css">
+	<link rel="stylesheet" href="./css/konami.css">
+</head>
+<body>
+	<div class="page-wrapper">
+		<header class="container">
+			<div class="row">
+				<div class="column">
+					<h1>Konami Code</h1>
+				</div>
+			</div>
+		</header>
+		<main class="container">
+			<div class="row">
+				<div class="column">
+					<img class="hero-img" src="./img/contra.jpeg"/>
+				</div>
+			</div>
+		</main>
+	</div>
+	<script>
+  		"use strict";
+          const konamiCode =
+		    ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft",
+			    "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a", "Enter"];
+          	console.log(konamiCode);
+
+          let userCode = [];
+
+          const handleCodeCheck = () => {
+                    if(userCode.toString() === konamiCode.toString()) {
+                         alert("You have added 30 lives!");
+                    } else {
+                         userCode = [];
+                    }
+		}
+
+          (() => {
+               document.addEventListener("keyup", event => {
+                    console.log(event.key);
+                    userCode.push(event.key);
+                    if(userCode.length < 11) {
+                         userCode.forEach((input, i) => {
+                              if(userCode[i]===konamiCode[i]) {
+                                   console.log(true);
+						} else {
+                                   userCode = [];
+						}
+					})
+				} else if (userCode.length = 11) {
+                         handleCodeCheck();
+				}
+               });
+          })();
+	</script>
+</body>
+</html>
