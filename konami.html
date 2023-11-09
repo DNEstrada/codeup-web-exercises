@@ -30,17 +30,35 @@
 			    "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a", "Enter"];
           	console.log(konamiCode);
 
-          let userCode = [];
+          const handleCodeCheck = (userCode, heroBackground) => {
+			if(userCode.toString() === konamiCode.toString()) {
+				// alert("You have added 30 lives!");
+				livesScreen(document.body.querySelector('.hero-img'));
+			} else {
+				userCode = [];
+			}
+			return userCode;
+		}
 
-          const handleCodeCheck = () => {
-                    if(userCode.toString() === konamiCode.toString()) {
-                         alert("You have added 30 lives!");
-                    } else {
-                         userCode = [];
-                    }
+          const livesScreen = (heroBackground) => {
+               setInterval(() => {
+                    heroBackground.setAttribute("src", "./img/30lives.png");
+                    setTimeout(()=> {
+                         heroBackground.setAttribute("src", "./img/30livesb.png");
+				},800);
+               }, 1000);
+		};
+
+          const handlePlayTitle = () => {
+               new Audio('./snd/title.mp3').play();
+               document.body.querySelector('.hero-img').removeEventListener('click', handlePlayTitle);
 		}
 
           (() => {
+               let userCode = [];
+               const heroBackground = document.body.querySelector('.hero-img');
+               heroBackground.addEventListener('click', handlePlayTitle);
+
                document.addEventListener("keyup", event => {
                     console.log(event.key);
                     userCode.push(event.key);
@@ -52,8 +70,8 @@
                                    userCode = [];
 						}
 					})
-				} else if (userCode.length = 11) {
-                         handleCodeCheck();
+				} else {
+                         userCode = handleCodeCheck(userCode, heroBackground);
 				}
                });
           })();
