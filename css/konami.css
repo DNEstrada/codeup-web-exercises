@@ -1,8 +1,26 @@
+.container {
+    background-color: #000;
+}
+
 main .column {
     width: 100%;
 }
 
 .hero-img {
+    background-color: #000;
     aspect-ratio: 480/360;
     object-fit: cover;
+}
+
+.slide-right {
+    animation: slide-in-right 5s;
+}
+
+@keyframes slide-in-right {
+    0% {
+        transform: translateX(50%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
 }
