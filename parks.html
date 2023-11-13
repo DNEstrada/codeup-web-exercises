@@ -3,40 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Parks</title>
-
+    <link rel="stylesheet" href="./css/parks.css">
 </head>
 <body>
 
     <h1>National Parks FAQ</h1>
 
-    <div>
-        <h3>Acadia National Park</h3>
+    <div data-park="park-acadia">
+        <h3 id="header1">Acadia National Park</h3>
         <ul>
             <li>Location: Maine</li>
             <li>Est. February 26, 1919</li>
             <li>Covering most of Mount Desert Island and other coastal islands, Acadia features the tallest mountain on the Atlantic coast of the United States, granite peaks, ocean shoreline, woodlands, and lakes.</li>
             <li>There are freshwater, estuary, forest, and intertidal habitats.</li>
         </ul>
+        <button id="yellow-btn">Turn li4 yellow</button>
     </div>
 
-    <div>
-        <h3>The National Park of American Samoa</h3>
+    <div data-park="park-samoa">
+        <h3 id="header2">The National Park of American Samoa</h3>
         <ul>
             <li>Location: American Samoa</li>
             <li>Est.October 31, 1988</li>
             <li>The southernmost national park is on three Samoan islands in the South Pacific.</li>
             <li>It protects coral reefs, rainforests, volcanic mountains, and white beaches.</li>
         </ul>
+        <button id="yellow-btn2">Turn li4 yellow</button>
     </div>
 
-    <div>
-        <h3>Arches National Park</h3>
+    <div data-park="park-arches">
+        <h3 id="header3">Arches National Park</h3>
         <ul>
             <li>Location: Utah</li>
             <li>Est. November 12, 1971</li>
             <li>This site features more than 2,000 natural sandstone arches, with some of the most popular arches in the park being Delicate Arch, Landscape Arch and Double Arch.</li>
             <li>Millions of years of erosion have created these structures in a desert climate where the arid ground has life-sustaining biological soil crusts and potholes that serve as natural water-collecting basins.</li>
         </ul>
+        <button id="yellow-btn3">Turn li4 yellow</button>
     </div>
 
     <dl>
@@ -71,5 +74,6 @@
         <dd>Before you head out, check with the national parks that you intend to visit. In many national parks, off-road driving is illegal. Where off-road driving is allowed, the National Park Service regulates it.</dd>
     </dl>
 
+    <script src="./js/parks.js"></script>
 </body>
 </html>
