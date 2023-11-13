@@ -8,7 +8,6 @@ const uList1 = document.querySelector('#acadia-list');
 const uList2 = document.querySelector('#samoa-list');
 const uList3 = document.querySelector('#arches-list');
 
-
 yellowBtn1.addEventListener('click', e => {
      parkList = yellowBtn1.previousElementSibling;
      parkList.lastElementChild.classList.add("yellow-bg");
