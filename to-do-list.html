@@ -68,10 +68,11 @@
                 renderTodo(toDoInput.value);
                 console.log(listLimit);
             }
-        }
             toDoInput.value = '';
+        }
 
-        toDoForm.addEventListener('submit', ()=>{
+
+        toDoForm.addEventListener('submit', event=>{
             handleUserInput(event);
         });
     })();
