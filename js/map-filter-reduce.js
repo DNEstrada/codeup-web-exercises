@@ -47,6 +47,7 @@ const users = [
      console.log(arrEmails);
 
      const totalYrsExp = users.reduce((accumulator, user)=>{
+          // * can add if statement if at last index, return the average yrs
           return accumulator + user.yearsOfExperience;
      }, 0);
      console.log(totalYrsExp);
@@ -59,7 +60,7 @@ const users = [
           } else {
                return accumulator;
           }
-     }, '');
+     }, ''); // * start with index 0
      console.log(longestEmail);
 
      const listOfUsers = users.reduce((accumulator, user)=>{
@@ -70,16 +71,10 @@ const users = [
      console.log('Your instructors are: ', sepUsersNames.join(', ') + '.');
 
      const fullList = users.reduce((accumulator, user)=> {
-          let lngList = user.languages.join(',');
-          return accumulator + lngList + ',';
+          return accumulator + user.languages.join(',') + ',';
      }, []);
-     console.log(fullList);
      let orderedList = fullList.split(',');
      orderedList.pop();
-     console.log(orderedList);
-     const listOfLngs = users.reduce((accumulator, user)=> {
-          let a = orderedList;
-          return [... new Set(a)]
-     }, []);
-     console.log (listOfLngs);
+     const finalList = [... new Set(orderedList)];
+     console.log(finalList);
 })();
