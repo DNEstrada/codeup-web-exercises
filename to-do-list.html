@@ -5,6 +5,7 @@
     <title>To Do List</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/test.css">
 </head>
 <body>
 <div class="container">
@@ -36,11 +37,13 @@
 <script>
     const renderTodo = (input) => {
         const todoItem = document.createElement('li');
-        todoItem.classList.add("to-do-item", "list-group-item", "d-flex", "justify-content-between", "align-items-center");
+        todoItem.classList.add("to-do-item", "list-group-item", "justify-content-between",
+                "align-items-center", "test");
         todoItem.innerHTML = `
-          <p class="m-0">${input}</p>
-          <button class="btn btn-danger" data-delete>Done</button>
-          `;
+          <div class="inner">
+              <p class="m-0">${input}</p>
+              <button class="btn btn-danger" data-delete>Done</button>
+          </div>`;
         const listParent = document.querySelector('#to-do-list');
         listParent.appendChild(todoItem);
         const deleteTodo = todoItem.querySelector('button[data-delete]');
