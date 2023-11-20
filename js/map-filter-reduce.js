@@ -69,8 +69,17 @@ const users = [
      sepUsersNames.pop();
      console.log('Your instructors are: ', sepUsersNames.join(', ') + '.');
 
+     const fullList = users.reduce((accumulator, user)=> {
+          let lngList = user.languages.join(',');
+          return accumulator + lngList + ',';
+     }, []);
+     console.log(fullList);
+     let orderedList = fullList.split(',');
+     orderedList.pop();
+     console.log(orderedList);
      const listOfLngs = users.reduce((accumulator, user)=> {
-          return accumulator.push(user.languages);
-     }, users[0].languages);
+          let a = orderedList;
+          return [... new Set(a)]
+     }, []);
      console.log (listOfLngs);
 })();
