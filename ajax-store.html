@@ -39,7 +39,7 @@
                 toolRow.innerHTML=`
                     <td>${data.title}</td>
                     <td>${data.quantity}</td>
-                    <td>${data.price}</td>
+                    <td>${(data.price).toLocaleString("en-US", {style:"currency", currency: "USD"})}</td>
                     <td>${data.categories}</td>
                 `
                 document.querySelector('#insertProducts').appendChild(toolRow);
