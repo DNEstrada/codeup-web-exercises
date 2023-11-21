@@ -10,7 +10,7 @@ const getCommitDate = (username) => {
           }
      }
      return fetch (url, options)
-          .then((response) => {
+          .then((response) => { // * shorthand .then(response=>response.json())
                return response.json();
           })
           .then((data) => {
@@ -19,7 +19,7 @@ const getCommitDate = (username) => {
                });
                console.log(pushEvents);
                const commitDate = new Date(pushEvents[0].created_at);
-               console.log(commitDate.toString());
+               console.log(commitDate); // * don't need toString to format it
           })
           .catch ((error)=> {
                console.log(error);
