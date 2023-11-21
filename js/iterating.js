@@ -16,9 +16,9 @@ console.log(names.length);
      /**
       * TODO:
       * Create log statements that will print each of the names individually by
-      * accessing each element's index.
+      * accessing each element's index.html.
       */
-console.log(names); // supposed to console.log each index
+console.log(names); // supposed to console.log each index.html
      /**
       * TODO:
       * Write some code that uses a for loop to log every item in the names

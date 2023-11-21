@@ -47,7 +47,7 @@ const users = [
      console.log(arrEmails);
 
      const totalYrsExp = users.reduce((accumulator, user)=>{
-          // * can add if statement if at last index, return the average yrs
+          // * can add if statement if at last index.html, return the average yrs
           return accumulator + user.yearsOfExperience;
      }, 0);
      console.log(totalYrsExp);
@@ -60,7 +60,7 @@ const users = [
           } else {
                return accumulator;
           }
-     }, ''); // * start with index 0
+     }, ''); // * start with index.html 0
      console.log(longestEmail);
 
      const listOfUsers = users.reduce((accumulator, user)=>{

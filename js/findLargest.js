@@ -5,7 +5,7 @@ const findLargestNumber = (arr) => {
           return; // or return false
      } else {
           // start a variable "largest" at 0
-          let largest = 0; // for negative array, start largest at first index [0]
+          let largest = 0; // for negative array, start largest at first index.html [0]
           // loop through arr and replace "largest" if value is greater
           largest = arr.reduce((a, b) => Math.max(a, b), -Infinity);
           // return largest
