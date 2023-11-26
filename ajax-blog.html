@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+		h2 {color: darkgreen}
+		span {font-weight: bolder}
+		p {background-color: #C5FFC5FC}
+		p:last-child {background-color: lightblue}
+	</style>
+</head>
+<body>
+  <div id="posts">
+  </div>
+	<script type="module">
+	const getBlog = () => {
+          const url = "./data/blog.json";
+          const options = {
+               method: "GET",
+               headers: {
+                    "Content-Type": "application/json"
+               }
+          };
+          return fetch(url, options)
+          .then(response=>response.json())
+     };
+
+     const createBlog = (blog) => {
+          const blogRow = document.createElement('div');
+          blogRow.innerHTML = `
+          	<h2>${blog.title}</h2><span>${blog.date}</span>
+	  		<p>${blog.content}</p>
+	 		<p>${blog.categories}</p>
+          `
+		document.querySelector('#posts').appendChild(blogRow);
+	}
+
+     (()=>{
+          getBlog().then((blog)=>{
+               for(let i=0; i<blog.length; i++) {
+                    createBlog(blog[i]);
+			}
+		});
+	})();
+	</script>
+</body>
+</html>
