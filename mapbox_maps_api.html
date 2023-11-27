@@ -3,14 +3,16 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Mapbox Maps</title>
+	<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css">
+	<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
 	<style>
-         	@import url("https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css") layer(mapbox);
 		.page-wrapper {min-height: 100dvh}
 	</style>
 </head>
 <body>
 	<div id="map" class="page-wrapper"></div>
 	<script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+	<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
 	<script type="module">
 		import {keys} from "./js/keys.js";
 
@@ -18,24 +20,35 @@
                {
                     name: "Pluckers Wing Bar",
 				location: [-98.4849, 29.5193],
-				description: "Sports Bar known for its chicken wings"
+				description: "Sports Bar known for its chicken wings",
+				favorites: ["fire wings", "jalapeno poppers", "brownie"]
 			},
                {
                     name: "Freebirds World Burrito",
                     location: [-98.49547191086897, 29.521278636162876],
-                    description: "Counter-serve chain for custom burritos"
+                    description: "Counter-serve chain for custom burritos",
+                    favorites: ["monster burrito", "chips and dip", "quesadilla"]
                },
                {
                     name: "Pappadeaux Seafood Kitchen",
-                    location: [-98.48771034437196, 29.519699184356014],
-                    description: "Cajun seafood, pastas and cocktails"
+                    location: [-98.48815083732605, 29.519589419411318],
+                    description: "Cajun seafood, pastas and cocktails",
+                    favorites: ["gator tail", "shrimp fondeaux", "blackened catfish"]
                }
 		];
 
           const createMarkers = (restaurants, map) => {
                restaurants.forEach(restaurant=> {
                     const popup = new mapboxgl.Popup()
-                    .setHTML(`<p>${restaurant.name}</p><p>${restaurant.description}</p>`)
+                    .setHTML(`
+					<h2>${restaurant.name}</h2>
+					<p>${restaurant.description}</p>
+					<ul>Favorite Dishes:
+						<li>${restaurant.favorites[0]}</li>
+						<li>${restaurant.favorites[1]}</li>
+						<li>${restaurant.favorites[2]}</li>
+					</ul>
+				`)
                     new mapboxgl.Marker()
                     .setLngLat(restaurant.location)
                     .addTo(map)
@@ -44,15 +57,21 @@
 		}
 
           (()=>{
-               let zoomValue = 15;
                mapboxgl.accessToken = keys.mapbox;
 
                const map = new mapboxgl.Map({
 				container: 'map',
 				style: 'mapbox://styles/mapbox/streets-v12',
 				center: [-98.4849, 29.5193],
-				zoom: zoomValue
+				zoom: 15
 			});
+               map.addControl(new mapboxgl.NavigationControl());
+               map.addControl(
+                   new MapboxGeocoder({
+                        accessToken: mapboxgl.accessToken,
+                        mapboxgl: mapboxgl
+                   })
+               );
                createMarkers(restaurants, map);
 		})();
 	</script>
