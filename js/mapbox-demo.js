@@ -34,9 +34,10 @@ const getAddress = async (lng, lat) => {
 const handleDragEnd = async (e, map) => {
      const lng = e.target._lngLat.lng;
      const lat = e.target._lngLat.lat;
+     console.log(lng, lat);
      map.flyTo({
           center: [lng, lat],
-          zoom: 12,
+          zoom: 16,
           speed: 2,
      });
      const address = await getAddress(lng, lat);
@@ -44,7 +45,7 @@ const handleDragEnd = async (e, map) => {
 }
 
 (async()=>{
-     const coordinates = await getCoordinates("8700 Tesoro Dr Suite 100, San Antonio, TX 78217");
+     const coordinates = await getCoordinates("92 Northeast Loop 410, San Antonio, Texas");
      mapboxgl.accessToken = keys.mapbox;
      const map = new mapboxgl.Map({
           container: 'map', // container ID

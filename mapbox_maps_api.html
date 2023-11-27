@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Mapbox Maps</title>
+	<style>
+         	@import url("https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css") layer(mapbox);
+		.page-wrapper {min-height: 100dvh}
+	</style>
+</head>
+<body>
+	<div id="map" class="page-wrapper"></div>
+	<script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+	<script type="module">
+		import {keys} from "./js/keys.js";
+
+          const restaurants = [
+               {
+                    name: "Pluckers Wing Bar",
+				location: [-98.4849, 29.5193],
+				description: "Sports Bar known for its chicken wings"
+			},
+               {
+                    name: "Freebirds World Burrito",
+                    location: [-98.49547191086897, 29.521278636162876],
+                    description: "Counter-serve chain for custom burritos"
+               },
+               {
+                    name: "Pappadeaux Seafood Kitchen",
+                    location: [-98.48771034437196, 29.519699184356014],
+                    description: "Cajun seafood, pastas and cocktails"
+               }
+		];
+
+          const createMarkers = (restaurants, map) => {
+               restaurants.forEach(restaurant=> {
+                    const popup = new mapboxgl.Popup()
+                    .setHTML(`<p>${restaurant.name}</p><p>${restaurant.description}</p>`)
+                    new mapboxgl.Marker()
+                    .setLngLat(restaurant.location)
+                    .addTo(map)
+                    .setPopup(popup);
+               });
+		}
+
+          (()=>{
+               let zoomValue = 15;
+               mapboxgl.accessToken = keys.mapbox;
+
+               const map = new mapboxgl.Map({
+				container: 'map',
+				style: 'mapbox://styles/mapbox/streets-v12',
+				center: [-98.4849, 29.5193],
+				zoom: zoomValue
+			});
+               createMarkers(restaurants, map);
+		})();
+	</script>
+</body>
+</html>
