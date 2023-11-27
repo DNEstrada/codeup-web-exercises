@@ -35,13 +35,33 @@
         .catch(error=>error)
     };
 
+    const toolIcons = (data) => {
+        let categoryIcons = "";
+        if (data.categories.includes("tool")) {
+            categoryIcons = "<img src=./img/tools.svg>";
+        }
+        if (data.categories.includes("powered")) {
+            categoryIcons = `${categoryIcons} <img src=./img/plug-fill.svg>`;
+        }
+        if (data.categories.includes("gas")) {
+            categoryIcons = `${categoryIcons} <img src=./img/droplet-fill.svg>`;
+        }
+        if (data.categories.includes("outdoor")) {
+            categoryIcons = `${categoryIcons} <img src=./img/brightness-alt-high-fill.svg>`;
+        }
+        if (data.categories.includes("vehicle")) {
+            categoryIcons = `${categoryIcons} <img src=./img/truck-flatbed.svg>`;
+        }
+        return categoryIcons;
+    }
+
     const createTools = (data) => {
         const toolRow = document.createElement('tr');
         toolRow.innerHTML = `
                         <td>${data.title}</td>
                         <td>${data.quantity}</td>
                         <td>${(data.price).toLocaleString("en-US", {style: "currency", currency: "USD"})}</td>
-                        <td>${data.categories}</td>
+                        <td>${toolIcons(data)}</td>
                     `
         document.querySelector('#insertProducts').appendChild(toolRow);
     };
