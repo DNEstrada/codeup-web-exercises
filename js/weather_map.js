@@ -29,6 +29,7 @@ const renderCards = weather => {
           weatherCard.innerHTML = `
           <p>${new Date((weather.daily[i].dt)*1000)}</p>
           <p>Max: ${weather.daily[i].temp.max} / Min: ${weather.daily[i].temp.min}</p>
+          <img class="weather-icon" src="../img/weather_map/${weather.daily[i].weather[0].icon}@2x.png">
           <p>Description: ${weather.daily[i].summary}</p>
           <p>Humidity: ${weather.daily[i].humidity}</p>
           <p>Wind: ${weather.daily[i].wind_speed}</p>
