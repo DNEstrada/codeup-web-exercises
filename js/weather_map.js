@@ -12,9 +12,23 @@ const getForecast = (lat, lng) => {
      return fetch(url, options)
           .then(response=>response.json())
           .then((weather)=> {
-               console.log(weather);
-     });
+               console.log(weather)
+               return weather;
+          })
+          .catch(error=>error);
 };
 
+const createCards = weather => {
+     const weatherCard = document.createElement('article');
+     weatherCard.innerHTML = `
+          <p>${weather.daily[0].dt}</p>
+          `;
+     document.querySelector('main .col').appendChild(weatherCard);
+}
+
 (()=>{
+     getForecast(0, 0)
+          .then(weather=> {
+               createCards(weather);
+          });
 })();
