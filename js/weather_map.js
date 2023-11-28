@@ -12,7 +12,6 @@ const getForecast = (lat, lng) => {
      return fetch(url, options)
           .then(response=>response.json())
           .then((weather)=> {
-               console.log(weather)
                return weather;
           })
           .catch(error=>error);
@@ -43,17 +42,32 @@ const getMap = (lat=-98.8440411, lng=29.4587654) => {
           center: [lat, lng],
           zoom: 5
      });
-     const popup = new mapboxgl.Popup()
+     map.addControl(new mapboxgl.NavigationControl());
+     map.addControl(
+               new MapboxGeocoder({
+              accessToken: mapboxgl.accessToken,
+              mapboxgl: mapboxgl
+         })
+     );
+     const popup = new mapboxgl.Popup();
      let marker = new mapboxgl.Marker()
      .setLngLat([lat, lng])
      .addTo(map)
+     map.flyTo({
+          center: [lat, lng],
+          zoom: 5,
+          speed: 2,
+     });
      map.on('click', e=> {
           marker.remove();
-          console.log(e.lngLat);
           marker = new mapboxgl.Marker()
           .setLngLat([e.lngLat.lng, e.lngLat.lat])
           .addTo(map)
-          console.log(marker._lngLat);
+          map.flyTo({
+               center: [e.lngLat.lng, e.lngLat.lat],
+               zoom: 5,
+               speed: 2,
+          });
      });
 }
 
