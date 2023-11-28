@@ -18,10 +18,6 @@ const getForecast = (lat, lng) => {
           .catch(error=>error);
 };
 
-// const createCards = weather => {
-//
-// }
-
 const renderCards = weather => {
      for(let i = 0; i<5; i++) {
           const weatherCard = document.createElement('article');
@@ -39,19 +35,30 @@ const renderCards = weather => {
      }
 }
 
-const getMap = (lat, lng) => {
+const getMap = (lat=-98.8440411, lng=29.4587654) => {
      mapboxgl.accessToken = keys.mapbox;
-
      const map = new mapboxgl.Map({
           container: 'map',
           style: 'mapbox://styles/mapbox/streets-v12',
-          center: [-98.8440411, 29.4587654],
+          center: [lat, lng],
           zoom: 5
+     });
+     const popup = new mapboxgl.Popup()
+     let marker = new mapboxgl.Marker()
+     .setLngLat([lat, lng])
+     .addTo(map)
+     map.on('click', e=> {
+          marker.remove();
+          console.log(e.lngLat);
+          marker = new mapboxgl.Marker()
+          .setLngLat([e.lngLat.lng, e.lngLat.lat])
+          .addTo(map)
+          console.log(marker._lngLat);
      });
 }
 
 (()=>{
-     getMap(0, 0);
+     getMap();
      getForecast(0, 0)
           .then(weather=> {
                renderCards(weather);
