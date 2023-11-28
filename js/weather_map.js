@@ -18,17 +18,41 @@ const getForecast = (lat, lng) => {
           .catch(error=>error);
 };
 
-const createCards = weather => {
-     const weatherCard = document.createElement('article');
-     weatherCard.innerHTML = `
-          <p>${weather.daily[0].dt}</p>
+// const createCards = weather => {
+//
+// }
+
+const renderCards = weather => {
+     for(let i = 0; i<5; i++) {
+          const weatherCard = document.createElement('article');
+          weatherCard.classList.add('weather-card', 'col-2');
+          weatherCard.innerHTML = `
+          <p>${new Date((weather.daily[i].dt)*1000)}</p>
+          <p>Max: ${weather.daily[i].temp.max} / Min: ${weather.daily[i].temp.min}</p>
+          <p>Description: ${weather.daily[i].summary}</p>
+          <p>Humidity: ${weather.daily[i].humidity}</p>
+          <p>Wind: ${weather.daily[i].wind_speed}</p>
+          <p>Pressure: ${weather.daily[i].pressure}</p>
           `;
-     document.querySelector('main .col').appendChild(weatherCard);
+          document.querySelector('main .col').appendChild(weatherCard);
+     }
+}
+
+const getMap = (lat, lng) => {
+     mapboxgl.accessToken = keys.mapbox;
+
+     const map = new mapboxgl.Map({
+          container: 'map',
+          style: 'mapbox://styles/mapbox/streets-v12',
+          center: [-98.8440411, 29.4587654],
+          zoom: 5
+     });
 }
 
 (()=>{
+     getMap(0, 0);
      getForecast(0, 0)
           .then(weather=> {
-               createCards(weather);
+               renderCards(weather);
           });
 })();
