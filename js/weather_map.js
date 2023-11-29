@@ -50,6 +50,7 @@ const renderCards = weather => {
                </div>
                `;
           cardBody.appendChild(weatherCard);
+          document.querySelector('.nav-temp').innerHTML = `Current Temperature: <strong>${weather.current.temp}°</strong>`;
      }
 }
 
@@ -95,7 +96,7 @@ const getMap = (lat=29.4587654, lng=-98.8440411) => {
      });
 
      map.on('click', e=> {
-          clearMarkers(currentMarkers);
+          clearMarkers();
           marker = new mapboxgl.Marker({
                draggable: true,
           })
@@ -135,6 +136,14 @@ const getMap = (lat=29.4587654, lng=-98.8440411) => {
           });
      });
 };
+
+const findCity = (lat=29.4587654, lng=-98.8440411) => {
+     mapboxgl.accessToken = keys.mapbox;
+     const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json`;
+     const options = {
+          method: "GET",
+     }
+}
 
 const clearMarkers = () => {
      document.querySelector(".mapboxgl-marker").remove();
