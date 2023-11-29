@@ -17,21 +17,39 @@ const getForecast = (lat=29.4587654, lng=-98.8440411) => {
           .catch(error=>error);
 };
 
+const formatDate = timestamp => {
+     let options = {
+          weekday: "short",
+          month: "short",
+          day: "numeric",
+     }
+     const parsedDate = new Intl.DateTimeFormat("en-US", options).format(timestamp);
+     return parsedDate;
+}
+
 const renderCards = weather => {
      let cardBody = document.querySelector('main .col');
      cardBody.innerHTML = "";
      for(let i = 0; i<5; i++) {
           const weatherCard = document.createElement('article');
-          weatherCard.classList.add('weather-card', 'col-2');
+          weatherCard.classList.add('card');
+          const dateTitle = formatDate((weather.daily[i].dt)*1000);
           weatherCard.innerHTML = `
-          <p>${new Date((weather.daily[i].dt)*1000)}</p>
-          <p>Max: ${weather.daily[i].temp.max} / Min: ${weather.daily[i].temp.min}</p>
-          <img class="weather-icon" src="../img/weather_map/${weather.daily[i].weather[0].icon}@2x.png">
-          <p>Description: ${weather.daily[i].summary}</p>
-          <p>Humidity: ${weather.daily[i].humidity}</p>
-          <p>Wind: ${weather.daily[i].wind_speed}</p>
-          <p>Pressure: ${weather.daily[i].pressure}</p>
-          `;
+               <div class="card-body">
+                    <p class="card-title text-center">${dateTitle}</p>          
+                    <p class="d-flex justify-content-center align-items-center temps"><img class="weather-icon" src="../img/weather_map/caret-up-fill.svg">${parseInt(weather.daily[i].temp.max)}°<img class="weather-icon" src="../img/weather_map/caret-down-fill.svg">${parseInt(weather.daily[i].temp.min)}°</p>
+                    <p class="d-flex justify-content-center"><img class="weather-icon" src="../img/weather_map/${weather.daily[i].weather[0].icon}@2x.png"></p>
+                    <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>
+               </div>
+               `;
+          // weatherCard.innerHTML = `
+          // <img class="weather-icon" src="../img/weather_map/${weather.daily[i].weather[0].icon}@2x.png">
+          // <p>Description: ${weather.daily[i].summary}</p>
+          // <p>Humidity: ${weather.daily[i].humidity}</p>
+          // <p>Wind: ${weather.daily[i].wind_speed}</p>
+          // <p>Pressure: ${weather.daily[i].pressure}</p>
+          // `;
           cardBody.appendChild(weatherCard);
      }
 }
