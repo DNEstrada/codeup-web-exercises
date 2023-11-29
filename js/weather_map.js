@@ -89,6 +89,14 @@ const getMap = (lat=29.4587654, lng=-98.8440411) => {
                zoom: 10,
                speed: 1,
           });
+          marker.on("dragend", e=> {
+               map.flyTo({
+                    center: [e.target._lngLat.lng, e.target._lngLat.lat],
+                    zoom: 10,
+                    speed: 1,
+               });
+               getForecast(e.target._lngLat.lat, e.target._lngLat.lng);
+          });
           getForecast(e.lngLat.lat, e.lngLat.lng);
      });
 
