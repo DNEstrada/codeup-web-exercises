@@ -85,6 +85,7 @@ const getMap = (lat=29.4587654, lng=-98.8440411) => {
           zoom: 5,
           speed: 5,
      });
+     findCity(lat, lng);
 
      marker.on("dragend", e=> {
           map.flyTo({
@@ -92,10 +93,12 @@ const getMap = (lat=29.4587654, lng=-98.8440411) => {
                zoom: 10,
                speed: 1,
           });
+          findCity(e.target._lngLat.lat, e.target._lngLat.lng)
           getForecast(e.target._lngLat.lat, e.target._lngLat.lng);
      });
 
      map.on('click', e=> {
+          findCity(e.lngLat.lat, e.lngLat.lng);
           clearMarkers();
           marker = new mapboxgl.Marker({
                draggable: true,
@@ -113,6 +116,7 @@ const getMap = (lat=29.4587654, lng=-98.8440411) => {
                     zoom: 10,
                     speed: 1,
                });
+               findCity(e.target._lngLat.lat, e.target._lngLat.lng);
                getForecast(e.target._lngLat.lat, e.target._lngLat.lng);
           });
           getForecast(e.lngLat.lat, e.lngLat.lng);
@@ -120,6 +124,7 @@ const getMap = (lat=29.4587654, lng=-98.8440411) => {
 
      geocoder.on('result', e => {
           marker.remove();
+          findCity(e.result.center[1], e.result.center[0]);
           getForecast(e.result.center[1], e.result.center[0]);
           marker = new mapboxgl.Marker({
                draggable: true,
@@ -132,17 +137,25 @@ const getMap = (lat=29.4587654, lng=-98.8440411) => {
                     zoom: 10,
                     speed: 1,
                });
+               findCity(e.target._lngLat.lat, e.target._lngLat.lng);
                getForecast(e.target._lngLat.lat, e.target._lngLat.lng);
           });
      });
 };
 
 const findCity = (lat=29.4587654, lng=-98.8440411) => {
-     mapboxgl.accessToken = keys.mapbox;
-     const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json`;
+     const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?access_token=${keys.mapbox}`;
      const options = {
           method: "GET",
      }
+     return fetch(url, options)
+     .then(response=>response.json())
+     .then((geoData)=> {
+          console.log(geoData);
+          document.querySelector('.nav-city').innerHTML = `Location: <strong>${geoData.features[2].place_name}</strong>`;
+          return geoData;
+     })
+     .catch(error=>error);
 }
 
 const clearMarkers = () => {
