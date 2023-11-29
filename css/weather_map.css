@@ -64,3 +64,14 @@ section {
     overflow-y: scroll;
     font-family: sans-serif;
 }
+
+.fadein {
+    animation: appear 1s;
+}
+
+@keyframes appear {
+    from { opacity: 0;
+        transform: translateX(100%);}
+    to { opacity: 1;
+        transform: translateX(0%);}
+}

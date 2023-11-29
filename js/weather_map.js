@@ -47,7 +47,7 @@ const renderCards = weather => {
      cardBody.innerHTML = "";
      for(let i = 0; i<5; i++) {
           const weatherCard = document.createElement('article');
-          weatherCard.classList.add('card');
+          weatherCard.classList.add('card', 'fadein');
           const dateTitle = formatDate((weather.daily[i].dt)*1000);
           weatherCard.innerHTML = `
                <div class="card-body">
