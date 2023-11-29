@@ -12,6 +12,7 @@ const getForecast = (lat=29.4587654, lng=-98.8440411) => {
      return fetch(url, options)
           .then(response=>response.json())
           .then((weather)=> {
+               console.log(weather);
                return renderCards(weather);
           })
           .catch(error=>error);
@@ -37,19 +38,17 @@ const renderCards = weather => {
           weatherCard.innerHTML = `
                <div class="card-body">
                     <p class="card-title text-center">${dateTitle}</p>          
-                    <p class="d-flex justify-content-center align-items-center temps"><img class="weather-icon" src="../img/weather_map/caret-up-fill.svg">${parseInt(weather.daily[i].temp.max)}°<img class="weather-icon" src="../img/weather_map/caret-down-fill.svg">${parseInt(weather.daily[i].temp.min)}°</p>
-                    <p class="d-flex justify-content-center"><img class="weather-icon" src="../img/weather_map/${weather.daily[i].weather[0].icon}@2x.png"></p>
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
+                    <p class="d-flex justify-content-center align-items-center temps m-0"><img class="temp-icon" src="../img/weather_map/caret-up-fill.svg">${parseInt(weather.daily[i].temp.max)}°<img class="temp-icon" src="../img/weather_map/caret-down-fill.svg">${parseInt(weather.daily[i].temp.min)}°</p>
+                    <p class="d-flex justify-content-center m-0"><img class="weather-icon" src="../img/weather_map/${weather.daily[i].weather[0].icon}@2x.png"></p>
+                    <p class="card-description">${weather.daily[i].summary}</p>
+                    <hr>
+                    <p class="subtext">Feels Like: <strong>${weather.daily[i].feels_like.day}°</strong></p>
+                    <p class="subtext">Hum: <strong>${weather.daily[i].humidity}%</strong></p>
+                    <p class="subtext">Wind: <strong>${weather.daily[i].wind_speed}mph</strong></p>
+                    <p class="subtext">Press: <strong>${weather.daily[i].pressure}mb</strong></p>
+                    <p class="subtext">UV Index: <strong>${weather.daily[i].uvi}</strong></p>
                </div>
                `;
-          // weatherCard.innerHTML = `
-          // <img class="weather-icon" src="../img/weather_map/${weather.daily[i].weather[0].icon}@2x.png">
-          // <p>Description: ${weather.daily[i].summary}</p>
-          // <p>Humidity: ${weather.daily[i].humidity}</p>
-          // <p>Wind: ${weather.daily[i].wind_speed}</p>
-          // <p>Pressure: ${weather.daily[i].pressure}</p>
-          // `;
           cardBody.appendChild(weatherCard);
      }
 }

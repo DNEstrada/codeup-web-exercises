@@ -12,6 +12,16 @@ h1 {
     font-size: 24px;
 }
 
+.card-body {
+    max-height: 250px;
+    overflow-y: hidden;
+    max-width: 28dvh;
+}
+
+.card-body:hover {
+    overflow-y: auto;
+}
+
 .temps {
     font-size: 28px;
 }
@@ -20,6 +30,18 @@ section {
     height: 50dvh;
 }
 
-.card .weather-icon {
-        height: 5%;
+.temp-icon {
+    height: 25px;
+}
+
+.weather-icon {
+    height: 100px;
+}
+
+.card-description {
+    font-size: 12px;
+}
+
+.subtext {
+    font-size: 16px;
 }
