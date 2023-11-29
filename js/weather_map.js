@@ -1,5 +1,11 @@
 import {keys} from "./keys.js";
 
+/**
+ * Fetches the weather data in order to pass it to renderCards
+ * @param lat - latitude
+ * @param lng - longitude
+ * @returns {Promise<void>} - returns renderCards function
+ */
 const getForecast = (lat=29.4587654, lng=-98.8440411) => {
      if (Array.isArray(lat)) {
           lng = lat[1];
@@ -12,12 +18,16 @@ const getForecast = (lat=29.4587654, lng=-98.8440411) => {
      return fetch(url, options)
           .then(response=>response.json())
           .then((weather)=> {
-               console.log(weather);
                return renderCards(weather);
           })
           .catch(error=>error);
 };
 
+/**
+ * Utility function to parse the timestamp to a short date in the weatherCard
+ * @param timestamp - fed from weather data.daily.dt in ms
+ * @returns {string} - returns date in format (day, mon date)
+ */
 const formatDate = timestamp => {
      let options = {
           weekday: "short",
@@ -28,6 +38,10 @@ const formatDate = timestamp => {
      return parsedDate;
 }
 
+/**
+ * creates 1 card in a loop x5 , with provided weather data from getForecast
+ * @param weather - fetch Promise object from getForecast
+ */
 const renderCards = weather => {
      let cardBody = document.querySelector('main .col');
      cardBody.innerHTML = "";
@@ -54,7 +68,12 @@ const renderCards = weather => {
      }
 }
 
-const getMap = (lat=29.4587654, lng=-98.8440411) => {
+/**
+ * renders the map in #map element, contains all map related methods, events, geocoder, navigation
+ * @param lat - latitude
+ * @param lng - longitude
+ */
+const getMap = (lat=29.5190442, lng=-98.4564535) => {
      mapboxgl.accessToken = keys.mapbox;
 
      const map = new mapboxgl.Map({
@@ -62,6 +81,148 @@ const getMap = (lat=29.4587654, lng=-98.8440411) => {
           style: 'mapbox://styles/mapbox/streets-v12',
           center: [lng, lat],
           zoom: 5
+     });
+
+     const bounds = [
+          [-180, -90],
+          [180, 90]
+     ];
+     map.setMaxBounds(bounds);
+
+     const start = [-98.4564535, 29.5190442];
+
+     async function getRoute(end) {
+          // make a directions request using cycling profile
+          // an arbitrary start will always be the same
+          // only the end or destination will change
+          const query = await fetch(
+              `https://api.mapbox.com/directions/v5/mapbox/driving/${start[0]},${start[1]};${end[0]},${end[1]}?steps=true&geometries=geojson&access_token=${mapboxgl.accessToken}`,
+              { method: 'GET' }
+          );
+          const json = await query.json();
+          const data = json.routes[0];
+          const route = data.geometry.coordinates;
+          const geojson = {
+               type: 'Feature',
+               properties: {},
+               geometry: {
+                    type: 'LineString',
+                    coordinates: route
+               }
+          };
+          // if the route already exists on the map, we'll reset it using setData
+          if (map.getSource('route')) {
+               map.getSource('route').setData(geojson);
+          }
+          // otherwise, we'll make a new request
+          else {
+               map.addLayer({
+                    id: 'route',
+                    type: 'line',
+                    source: {
+                         type: 'geojson',
+                         data: geojson
+                    },
+                    layout: {
+                         'line-join': 'round',
+                         'line-cap': 'round'
+                    },
+                    paint: {
+                         'line-color': '#3887be',
+                         'line-width': 5,
+                         'line-opacity': 0.75
+                    }
+               });
+          }
+          // add turn instructions here at the end
+          // get the sidebar and add the instructions
+          const instructions = document.getElementById('instructions');
+          const steps = data.legs[0].steps;
+
+          let tripInstructions = '';
+          for (const step of steps) {
+               tripInstructions += `<li>${step.maneuver.instruction}</li>`;
+          }
+          instructions.innerHTML = `<p><strong>Trip duration: ${Math.floor(
+              data.duration / 60
+          )} min 🚴 </strong></p><ol>${tripInstructions}</ol>`;
+     }
+     map.on('load', () => {
+          // make an initial directions request that
+          // starts and ends at the same location
+          getRoute(start);
+
+          // Add starting point to the map
+          map.addLayer({
+               id: 'point',
+               type: 'circle',
+               source: {
+                    type: 'geojson',
+                    data: {
+                         type: 'FeatureCollection',
+                         features: [
+                              {
+                                   type: 'Feature',
+                                   properties: {},
+                                   geometry: {
+                                        type: 'Point',
+                                        coordinates: start
+                                   }
+                              }
+                         ]
+                    }
+               },
+               paint: {
+                    'circle-radius': 10,
+                    'circle-color': '#3887be'
+               }
+          });
+          // this is where the code from the next step will go
+          map.on('click', (event) => {
+               const coords = Object.keys(event.lngLat).map((key) => event.lngLat[key]);
+               const end = {
+                    type: 'FeatureCollection',
+                    features: [
+                         {
+                              type: 'Feature',
+                              properties: {},
+                              geometry: {
+                                   type: 'Point',
+                                   coordinates: coords
+                              }
+                         }
+                    ]
+               };
+               if (map.getLayer('end')) {
+                    map.getSource('end').setData(end);
+               } else {
+                    map.addLayer({
+                         id: 'end',
+                         type: 'circle',
+                         source: {
+                              type: 'geojson',
+                              data: {
+                                   type: 'FeatureCollection',
+                                   features: [
+                                        {
+                                             type: 'Feature',
+                                             properties: {},
+                                             geometry: {
+                                                  type: 'Point',
+                                                  coordinates: coords
+                                             }
+                                        }
+                                   ]
+                              }
+                         },
+                         paint: {
+                              'circle-radius': 10,
+                              'circle-color': '#f30'
+                         }
+                    });
+               }
+               getRoute(coords);
+          });
      });
 
      map.addControl(new mapboxgl.NavigationControl());
@@ -95,6 +256,7 @@ const getMap = (lat=29.4587654, lng=-98.8440411) => {
           });
           findCity(e.target._lngLat.lat, e.target._lngLat.lng)
           getForecast(e.target._lngLat.lat, e.target._lngLat.lng);
+          getRoute([e.target._lngLat.lng, e.target._lngLat.lat]);
      });
 
      map.on('click', e=> {
@@ -118,6 +280,7 @@ const getMap = (lat=29.4587654, lng=-98.8440411) => {
                });
                findCity(e.target._lngLat.lat, e.target._lngLat.lng);
                getForecast(e.target._lngLat.lat, e.target._lngLat.lng);
+               getRoute([e.target._lngLat.lng, e.target._lngLat.lat]);
           });
           getForecast(e.lngLat.lat, e.lngLat.lng);
      });
@@ -126,6 +289,7 @@ const getMap = (lat=29.4587654, lng=-98.8440411) => {
           marker.remove();
           findCity(e.result.center[1], e.result.center[0]);
           getForecast(e.result.center[1], e.result.center[0]);
+          getRoute([e.result.center[0], e.result.center[1]])
           marker = new mapboxgl.Marker({
                draggable: true,
           })
@@ -139,10 +303,17 @@ const getMap = (lat=29.4587654, lng=-98.8440411) => {
                });
                findCity(e.target._lngLat.lat, e.target._lngLat.lng);
                getForecast(e.target._lngLat.lat, e.target._lngLat.lng);
+               getRoute([e.target._lngLat.lng, e.target._lngLat.lat]);
           });
      });
 };
 
+/**
+ * for the #nav-city element, grabs coordinates and returns the city, zip, state, country
+ * @param lat - latitude
+ * @param lng - longitude
+ * @returns {Promise<any>} - the innerHTML reflects location
+ */
 const findCity = (lat=29.4587654, lng=-98.8440411) => {
      const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?access_token=${keys.mapbox}`;
      const options = {
@@ -151,13 +322,15 @@ const findCity = (lat=29.4587654, lng=-98.8440411) => {
      return fetch(url, options)
      .then(response=>response.json())
      .then((geoData)=> {
-          console.log(geoData);
           document.querySelector('.nav-city').innerHTML = `Location: <strong>${geoData.features[2].place_name}</strong>`;
           return geoData;
      })
      .catch(error=>error);
 }
 
+/**
+ * Utility function to clear marker whenever a new one is placed
+ */
 const clearMarkers = () => {
      document.querySelector(".mapboxgl-marker").remove();
 }
