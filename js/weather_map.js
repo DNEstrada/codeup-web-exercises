@@ -6,7 +6,7 @@ import {keys} from "./keys.js";
  * @param lng - longitude
  * @returns {Promise<void>} - returns renderCards function
  */
-const getForecast = (lat=29.4587654, lng=-98.8440411) => {
+const getForecast = (lat=29.5190442, lng=-98.4564535) => {
      if (Array.isArray(lat)) {
           lng = lat[1];
           lat = lat[0];
@@ -314,7 +314,7 @@ const getMap = (lat=29.5190442, lng=-98.4564535) => {
  * @param lng - longitude
  * @returns {Promise<any>} - the innerHTML reflects location
  */
-const findCity = (lat=29.4587654, lng=-98.8440411) => {
+const findCity = (lat=29.5190442, lng=-98.4564535) => {
      const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?access_token=${keys.mapbox}`;
      const options = {
           method: "GET",
